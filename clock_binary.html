@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Binary clock</title>
+</head>
+
+<style>
+    #clock
+    {
+        width: 400px;
+        height: 300px;
+        background-color: lightgray;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        flex-wrap: wrap;
+        padding: 20px;
+    }
+
+    .bit6
+    {
+        width: 210px;
+        height: 30px;
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        flex-wrap: wrap;
+        margin: 15px;
+    }
+
+    .bit
+    {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: black;
+        margin: 2px;
+    }
+
+</style>
+
+<script>
+    function start() 
+    {
+        let time = new Date();
+        let h = time.getHours();
+        let m = time.getMinutes();
+        let s = time.getSeconds();
+
+        let hBits = document.getElementById("h1") + document.getElementById("h2") + document.getElementById("h4") + document.getElementById("h8") + document.getElementById("h16") + document.getElementById("h32");
+
+        for( let i = 0; i < 6; i++)
+        {
+            switch(h)
+            {
+                case 1:
+                    hBits[i].style.backgroundcolor = red
+            }
+        }
+
+        /*switch(h)
+        {
+            case 1: 
+                document.getElementById("h1").style.backgroundColor = "red";
+                document.getElementById("h2").style.backgroundColor = "black";
+                document.getElementById("h4").style.backgroundColor = "black";
+                document.getElementById("h8").style.backgroundColor = "black";
+                document.getElementById("h16").style.backgroundColor = "black";
+                document.getElementById("h32").style.backgroundColor = "black";
+            break;
+
+            case 2: 
+                document.getElementById("h1").style.backgroundColor = "black";
+                document.getElementById("h2").style.backgroundColor = "red";
+                document.getElementById("h4").style.backgroundColor = "black";
+                document.getElementById("h8").style.backgroundColor = "black";
+                document.getElementById("h16").style.backgroundColor = "black";
+                document.getElementById("h32").style.backgroundColor = "black";
+            break;
+
+            case 3: 
+                document.getElementById("h1").style.backgroundColor = "red";
+                document.getElementById("h2").style.backgroundColor = "red";
+                document.getElementById("h4").style.backgroundColor = "black";
+                document.getElementById("h8").style.backgroundColor = "black";
+                document.getElementById("h16").style.backgroundColor = "black";
+                document.getElementById("h32").style.backgroundColor = "black";
+            break;
+            
+            case 4: 
+                document.getElementById("h1").style.backgroundColor = "black";
+                document.getElementById("h2").style.backgroundColor = "black";
+                document.getElementById("h4").style.backgroundColor = "red";
+                document.getElementById("h8").style.backgroundColor = "black";
+                document.getElementById("h16").style.backgroundColor = "black";
+                document.getElementById("h32").style.backgroundColor = "black";
+            break;
+
+            case 5: 
+                document.getElementById("h1").style.backgroundColor = "red";
+                document.getElementById("h2").style.backgroundColor = "black";
+                document.getElementById("h4").style.backgroundColor = "red";
+                document.getElementById("h8").style.backgroundColor = "black";
+                document.getElementById("h16").style.backgroundColor = "black";
+                document.getElementById("h32").style.backgroundColor = "black";
+            break;
+
+            case 6: 
+                document.getElementById("h1").style.backgroundColor = "black";
+                document.getElementById("h2").style.backgroundColor = "red";
+                document.getElementById("h4").style.backgroundColor = "red";
+                document.getElementById("h8").style.backgroundColor = "black";
+                document.getElementById("h16").style.backgroundColor = "black";
+                document.getElementById("h32").style.backgroundColor = "black";
+            break;
+
+            case 7: 
+                document.getElementById("h1").style.backgroundColor = "red";
+                document.getElementById("h2").style.backgroundColor = "red";
+                document.getElementById("h4").style.backgroundColor = "red";
+                document.getElementById("h8").style.backgroundColor = "black";
+                document.getElementById("h16").style.backgroundColor = "black";
+                document.getElementById("h32").style.backgroundColor = "black";
+            break;
+
+            case 8: 
+                document.getElementById("h1").style.backgroundColor = "black";
+                document.getElementById("h2").style.backgroundColor = "black";
+                document.getElementById("h4").style.backgroundColor = "black";
+                document.getElementById("h8").style.backgroundColor = "red";
+                document.getElementById("h16").style.backgroundColor = "black";
+                document.getElementById("h32").style.backgroundColor = "black";
+            break;
+
+            case 9: 
+                document.getElementById("h1").style.backgroundColor = "red";
+                document.getElementById("h2").style.backgroundColor = "black";
+                document.getElementById("h4").style.backgroundColor = "black";
+                document.getElementById("h8").style.backgroundColor = "red";
+                document.getElementById("h16").style.backgroundColor = "black";
+                document.getElementById("h32").style.backgroundColor = "black";
+            break;
+
+            case 10: 
+                document.getElementById("h1").style.backgroundColor = "black";
+                document.getElementById("h2").style.backgroundColor = "red";
+                document.getElementById("h4").style.backgroundColor = "black";
+                document.getElementById("h8").style.backgroundColor = "red";
+                document.getElementById("h16").style.backgroundColor = "black";
+                document.getElementById("h32").style.backgroundColor = "black";
+            break;
+
+            case 11: 
+                document.getElementById("h1").style.backgroundColor = "red";
+                document.getElementById("h2").style.backgroundColor = "red";
+                document.getElementById("h4").style.backgroundColor = "black";
+                document.getElementById("h8").style.backgroundColor = "red";
+                document.getElementById("h16").style.backgroundColor = "black";
+                document.getElementById("h32").style.backgroundColor = "black";
+            break;
+
+            case 12: 
+                document.getElementById("h1").style.backgroundColor = "black";
+                document.getElementById("h2").style.backgroundColor = "black";
+                document.getElementById("h4").style.backgroundColor = "red";
+                document.getElementById("h8").style.backgroundColor = "red";
+                document.getElementById("h16").style.backgroundColor = "black";
+                document.getElementById("h32").style.backgroundColor = "black";
+            break;
+
+            case 13: 
+                document.getElementById("h1").style.backgroundColor = "red";
+                document.getElementById("h2").style.backgroundColor = "black";
+                document.getElementById("h4").style.backgroundColor = "red";
+                document.getElementById("h8").style.backgroundColor = "red";
+                document.getElementById("h16").style.backgroundColor = "black";
+                document.getElementById("h32").style.backgroundColor = "black";
+            break;
+
+            case 14: 
+                document.getElementById("h1").style.backgroundColor = "black";
+                document.getElementById("h2").style.backgroundColor = "red";
+                document.getElementById("h4").style.backgroundColor = "red";
+                document.getElementById("h8").style.backgroundColor = "red";
+                document.getElementById("h16").style.backgroundColor = "black";
+                document.getElementById("h32").style.backgroundColor = "black";
+            break;
+
+            case 15: 
+                document.getElementById("h1").style.backgroundColor = "red";
+                document.getElementById("h2").style.backgroundColor = "red";
+                document.getElementById("h4").style.backgroundColor = "red";
+                document.getElementById("h8").style.backgroundColor = "red";
+                document.getElementById("h16").style.backgroundColor = "black";
+                document.getElementById("h32").style.backgroundColor = "black";
+            break;
+
+            case 1: 
+                document.getElementById("h1").style.backgroundColor = "red";
+                document.getElementById("h2").style.backgroundColor = "black";
+                document.getElementById("h4").style.backgroundColor = "black";
+                document.getElementById("h8").style.backgroundColor = "black";
+                document.getElementById("h16").style.backgroundColor = "black";
+                document.getElementById("h32").style.backgroundColor = "black";
+            break;
+
+            case 1: 
+                document.getElementById("h1").style.backgroundColor = "red";
+                document.getElementById("h2").style.backgroundColor = "black";
+                document.getElementById("h4").style.backgroundColor = "black";
+                document.getElementById("h8").style.backgroundColor = "black";
+                document.getElementById("h16").style.backgroundColor = "black";
+                document.getElementById("h32").style.backgroundColor = "black";
+            break;
+
+            case 1: 
+                document.getElementById("h1").style.backgroundColor = "red";
+                document.getElementById("h2").style.backgroundColor = "black";
+                document.getElementById("h4").style.backgroundColor = "black";
+                document.getElementById("h8").style.backgroundColor = "black";
+                document.getElementById("h16").style.backgroundColor = "black";
+                document.getElementById("h32").style.backgroundColor = "black";
+            break;
+
+            case 1: 
+                document.getElementById("h1").style.backgroundColor = "red";
+                document.getElementById("h2").style.backgroundColor = "black";
+                document.getElementById("h4").style.backgroundColor = "black";
+                document.getElementById("h8").style.backgroundColor = "black";
+                document.getElementById("h16").style.backgroundColor = "black";
+                document.getElementById("h32").style.backgroundColor = "black";
+            break;
+
+            case 1: 
+                document.getElementById("h1").style.backgroundColor = "red";
+                document.getElementById("h2").style.backgroundColor = "black";
+                document.getElementById("h4").style.backgroundColor = "black";
+                document.getElementById("h8").style.backgroundColor = "black";
+                document.getElementById("h16").style.backgroundColor = "black";
+                document.getElementById("h32").style.backgroundColor = "black";
+            break;
+
+            case 1: 
+                document.getElementById("h1").style.backgroundColor = "red";
+                document.getElementById("h2").style.backgroundColor = "black";
+                document.getElementById("h4").style.backgroundColor = "black";
+                document.getElementById("h8").style.backgroundColor = "black";
+                document.getElementById("h16").style.backgroundColor = "black";
+                document.getElementById("h32").style.backgroundColor = "black";
+            break;
+
+            case 1: 
+                document.getElementById("h1").style.backgroundColor = "red";
+                document.getElementById("h2").style.backgroundColor = "black";
+                document.getElementById("h4").style.backgroundColor = "black";
+                document.getElementById("h8").style.backgroundColor = "black";
+                document.getElementById("h16").style.backgroundColor = "black";
+                document.getElementById("h32").style.backgroundColor = "black";
+            break;
+
+            case 1: 
+                document.getElementById("h1").style.backgroundColor = "red";
+                document.getElementById("h2").style.backgroundColor = "black";
+                document.getElementById("h4").style.backgroundColor = "black";
+                document.getElementById("h8").style.backgroundColor = "black";
+                document.getElementById("h16").style.backgroundColor = "black";
+                document.getElementById("h32").style.backgroundColor = "black";
+            break;
+
+            case 1: 
+                document.getElementById("h1").style.backgroundColor = "red";
+                document.getElementById("h2").style.backgroundColor = "black";
+                document.getElementById("h4").style.backgroundColor = "black";
+                document.getElementById("h8").style.backgroundColor = "black";
+                document.getElementById("h16").style.backgroundColor = "black";
+                document.getElementById("h32").style.backgroundColor = "black";
+            break;
+        }*/
+
+    }
+
+
+</script>
+
+<body onload="start()">
+    <div id="clock">
+        <div class="bit6" >
+            <div class="bit" id="h32"></div>
+            <div class="bit" id="h16"></div>
+            <div class="bit" id="h8"></div>
+            <div class="bit" id="h4"></div>
+            <div class="bit" id="h2"></div>
+            <div class="bit" id="h1"></div>
+        </div>
+
+        <div class="bit6" >
+            <div class="bit" id="m32"></div>
+            <div class="bit" id="m16"></div>
+            <div class="bit" id="m8"></div>
+            <div class="bit" id="m4"></div>
+            <div class="bit" id="m2"></div>
+            <div class="bit" id="m1"></div>
+        </div>
+
+        <div class="bit6" >
+            <div class="bit" id="s32"></div>
+            <div class="bit" id="s16"></div>
+            <div class="bit" id="s8"></div>
+            <div class="bit" id="s4"></div>
+            <div class="bit" id="s2"></div>
+            <div class="bit" id="s1"></div>
+        </div>
+    </div>
+</body>
+</html>

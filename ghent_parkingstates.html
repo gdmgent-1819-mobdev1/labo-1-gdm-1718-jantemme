@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Parking Ghent</title>
+</head>
+
+<script>
+    const http = new XMLHttpRequest();
+    const url = 'https://datatank.stad.gent/4/mobiliteit/bezettingparkingsrealtime.json';
+    http.open("GET", url);
+    http.send();
+
+    http.onreadystatechange=(e)=>
+{
+    //console.log(http.responseText);
+    let obj = JSON.parse(http.responseText);
+    console.log(obj);
+
+    for(let i = 0; i < 6; i++)
+    {
+        document.getElementById('container').innerHTML = element[i]['name'];
+    }
+}
+
+
+
+</script>
+
+<style>
+
+</style>
+
+<body>
+    <div id="container" ></div>
+</body>
+</html>

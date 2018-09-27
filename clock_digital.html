@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Digital Clock</title>
+</head>
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script>
+        function start() {
+            let time = new Date();
+            let h = time.getHours();
+            let m = time.getMinutes();
+            let s = time.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+
+            // BRUSSELS 
+            document.getElementById('clock1').innerHTML =
+            h + ":" + m + ":" + s;
+
+            // NEW YORK 
+            if(h > 5)
+            {
+                document.getElementById('clock2').innerHTML =
+                h - 6 + ":" + m + ":" + s;
+            }
+            else
+            {
+                switch(h)
+                {
+                    case 0: 
+                        document.getElementById('clock2').innerHTML =
+                        24 - 6 + ":" + m + ":" + s;
+                    case 1: 
+                        document.getElementById('clock2').innerHTML =
+                        24 - 5 + ":" + m + ":" + s;
+                    case 2: 
+                        document.getElementById('clock2').innerHTML =
+                        24 - 4 + ":" + m + ":" + s;
+                    case 3: 
+                        document.getElementById('clock2').innerHTML =
+                        24 - 3 + ":" + m + ":" + s;
+                    case 4: 
+                        document.getElementById('clock2').innerHTML =
+                        24 - 2 + ":" + m + ":" + s;
+                    case 5: 
+                        document.getElementById('clock2').innerHTML =
+                        24 - 1 + ":" + m + ":" + s;
+                }
+            }
+            var t = setTimeout(start, 500);
+        }
+        function checkTime(i) 
+        {
+            if (i < 10) {i = "0" + i};
+            return i;
+        }
+        </script>
+
+        <style>
+            .zones
+            {
+                border-bottom: 2px solid black;
+            }
+            div
+            {
+                width: 300px;
+                font-family: 'Montserrat', sans-serif;
+                font-size: 200%;
+                text-align: center;
+                margin: auto;
+                padding-bottom: 20px;;
+            }
+            h1
+            {
+                font-size: 140%;
+            }
+        </style>
+<body onload="start()">
+
+        <div class="zones">
+            <h1>BRUSSELS</h1>
+            <div id="clock1"></div>
+        </div>
+
+        <div>
+            <h1>NEW YORK</h1>
+            <div id="clock2"></div>
+        </div>
+</body>
+</html>
