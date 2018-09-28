@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Parking Ghent</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 </head>
 
 <script>
@@ -13,27 +14,104 @@
     http.open("GET", url);
     http.send();
 
-    http.onreadystatechange=(e)=>
-{
-    //console.log(http.responseText);
-    let obj = JSON.parse(http.responseText);
-    console.log(obj);
-
-    for(let i = 0; i < 6; i++)
+http.onreadystatechange = function()
     {
-        document.getElementById('container').innerHTML = element[i]['name'];
-    }
-}
+      if (http.readyState == 4 && http.status == 200)
+      {
+        if (http.responseText)
+         {
+            //console.log(http.responseText);
+            let obj = JSON.parse(http.responseText);
+            console.log(obj[0]);
 
+            for(let i = 0; i < 6; i++)
+            {
+                document.getElementById('container').innerHTML += '<div class="items" > <h2>' + (obj[i]['name'] + '</h2> <div class="indicator" id="p' + i + '" ></div> </div>');
 
+                let status = (obj[i]['parkingStatus']['availableCapacity'] / obj[i]['parkingStatus']['totalCapacity']);
+                if(obj[i]['openingTimes']['open'] = true)
+                {
+                    if(status > 0.5)
+                    {
+                        document.getElementById('p' + i).style.backgroundColor = 'green';
+                    }
+
+                    if(status < 0.5 && status > 0.2)
+                    {
+                        document.getElementById('p' + i).style.backgroundColor = 'orange';
+                    }
+
+                    if(status < 0.2)
+                    {
+                        document.getElementById('p' + i).style.backgroundColor = 'red';
+                    }
+                }
+                else
+                {
+                    document.getElementById('p' + i).style.backgroundColor = 'red';
+                }
+
+            }
+          }
+       }
+     };
 
 </script>
 
 <style>
 
+    body
+    {
+        font-family: 'Montserrat', sans-serif;
+        text-align: center;
+    }
+
+    h2
+    {
+        font-size: 20px;
+        margin-bottom: 10px;
+        margin-top: 0px;
+    }
+
+    #container
+    {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        font-family: 'Montserrat', sans-serif;
+        padding: 10px;
+        margin: 10px;
+    }
+
+    .items
+    {
+        background-color: rgb(235, 235, 235);
+        width: 250px;
+        height: 100px;
+        padding: 10px;
+        margin: 10px;
+        text-align: center;
+        box-shadow: 5px 5px 5px 6px #ccc;
+    }
+
+    .indicator
+    {
+        width: 50px;
+        height: 50px;
+        background-color: red;
+        border-radius: 50%;
+        margin: auto;
+    }
+
 </style>
 
 <body>
+
+    <h1>Status Parkings Ghent</h1>
     <div id="container" ></div>
+
 </body>
 </html>
